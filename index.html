@@ -11,15 +11,16 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #ffffff;
       overflow: hidden;
+      background-color: #ffffff;
       font-family: 'Source Sans Pro', sans-serif;
+      position: relative;
     }
     #message {
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 10;
       font-size: 3em;
       font-weight: 700;
@@ -27,9 +28,12 @@
       color: #000000;
     }
     canvas {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -40,28 +44,17 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     const canvas = document.getElementById('confetti');
-    const myConfetti = confetti.create(canvas, {
-      resize: true,
-      useWorker: true
-    });
+    const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
 
     function launchConfetti() {
-      const duration = 5000; // Confetti duration in milliseconds
+      const duration = 5000;
       const end = Date.now() + duration;
 
       (function frame() {
         myConfetti({
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 },
-          colors: ['#ff0000','#ff7f00','#ffff00','#00ff00','#0000ff','#4b0082','#8f00ff']
-        });
-        myConfetti({
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
+          particleCount: 10,
+          spread: 120,
+          origin: { x: Math.random(), y: Math.random() },
           colors: ['#ff0000','#ff7f00','#ffff00','#00ff00','#0000ff','#4b0082','#8f00ff']
         });
 
@@ -71,12 +64,11 @@
       }());
     }
 
-    // Launch confetti immediately
     launchConfetti();
 
     // Redirect back to Monday after 5 seconds
     setTimeout(() => {
-      window.location.href = "https://harcourts-gold-compliance.monday.com/boards/18390236486"; // <-- Replace BOARD_ID with your Monday board URL
+      window.location.href = "https://harcourts-gold-compliance.monday.com/boards/18390236486"; // replace with your Monday board URL
     }, 5000);
   </script>
 </body>
