@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Celebration Confetti</title>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
+  <title>Harcourts Gold – Celebration</title>
+
+  <!-- Montserrat: clean corporate font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
   <style>
     html, body {
       margin: 0;
@@ -11,20 +14,42 @@
       height: 100%;
       width: 100%;
       overflow: hidden;
-      background-color: #ffffff;
-      font-family: 'Source Sans Pro', sans-serif;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #001c2f 0%, #002b49 100%);
+      color: #ffffff;
     }
+
+    /* Centre message card */
     #message {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 10;
-      font-size: 3em;
-      font-weight: 700;
       text-align: center;
-      color: #000000;
+      padding: 40px 60px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
     }
+
+    #message h1 {
+      font-size: 3em;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    #message p {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: #d9e7ef;
+      font-weight: 600;
+    }
+
     canvas {
       position: fixed;
       top: 0;
@@ -36,7 +61,12 @@
   </style>
 </head>
 <body>
-  <div id="message">SOLD! Docs signed, deal done - high-fives all round</div>
+
+  <div id="message">
+    <h1>SOLD!</h1>
+    <p>Docs signed. Deal done. High-fives all round.</p>
+  </div>
+
   <canvas id="confetti"></canvas>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -49,38 +79,42 @@
       const end = Date.now() + duration;
 
       (function frame() {
-        // Launch confetti from top, bottom, left, and right edges
-        for (let i = 0; i < 5; i++) {
+        const brandColors = ['#00ADEF', '#ffffff', '#cfd8dc', '#002b49'];
+
+        for (let i = 0; i < 3; i++) {
           myConfetti({
-            particleCount: 10,
+            particleCount: 12,
             angle: 60,
-            spread: 120,
-            origin: { x: Math.random(), y: 0 }, // top
-            colors: ['#ff0000','#ff7f00','#ffff00','#00ff00','#0000ff','#4b0082','#8f00ff']
+            spread: 90,
+            ticks: 200,
+            origin: { x: Math.random(), y: 0 },
+            colors: brandColors
           });
           myConfetti({
-            particleCount: 10,
+            particleCount: 12,
             angle: 120,
-            spread: 120,
-            origin: { x: Math.random(), y: 1 }, // bottom
-            colors: ['#ff0000','#ff7f00','#ffff00','#00ff00','#0000ff','#4b0082','#8f00ff']
+            spread: 90,
+            ticks: 200,
+            origin: { x: Math.random(), y: 1 },
+            colors: brandColors
           });
           myConfetti({
-            particleCount: 10,
+            particleCount: 12,
             angle: 90,
-            spread: 120,
-            origin: { x: 0, y: Math.random() }, // left
-            colors: ['#ff0000','#ff7f00','#ffff00','#00ff00','#0000ff','#4b0082','#8f00ff']
+            spread: 90,
+            ticks: 200,
+            origin: { x: 0, y: Math.random() },
+            colors: brandColors
           });
           myConfetti({
-            particleCount: 10,
+            particleCount: 12,
             angle: 270,
-            spread: 120,
-            origin: { x: 1, y: Math.random() }, // right
-            colors: ['#ff0000','#ff7f00','#ffff00','#00ff00','#0000ff','#4b0082','#8f00ff']
+            spread: 90,
+            ticks: 200,
+            origin: { x: 1, y: Math.random() },
+            colors: brandColors
           });
         }
-
         if (Date.now() < end) {
           requestAnimationFrame(frame);
         }
@@ -91,7 +125,7 @@
 
     // Redirect back to Monday after 5 seconds
     setTimeout(() => {
-      window.location.href = "https://harcourts-gold-compliance.monday.com/boards/18390236478"; // replace with your Monday board URL
+      window.location.href = "https://harcourts-gold-compliance.monday.com/boards/18390236478";
     }, 5000);
   </script>
 </body>
