@@ -14,7 +14,7 @@
       height: 100%;
       width: 100%;
       overflow: hidden;
-      background: #001f49; /* Updated background */
+      background: #001f49;
       color: #ffffff;
       font-family: "Source Sans Pro", sans-serif;
     }
@@ -37,7 +37,7 @@
     #message h1 {
       font-size: 3.5em;
       margin: 0;
-      font-weight: 700; /* Bold */
+      font-weight: 700;
       color: #ffffff;
       letter-spacing: 1px;
     }
@@ -45,7 +45,7 @@
     #message p {
       margin-top: 15px;
       font-size: 1.3em;
-      font-weight: 400; /* Regular */
+      font-weight: 400;
       color: #e3ebf2;
     }
 
@@ -61,6 +61,11 @@
 </head>
 <body>
 
+  <!-- 🔊 AUDIO EFFECT -->
+  <audio id="celebrationSound" preload="auto">
+    <source src="celebration.mp3" type="audio/mpeg">
+  </audio>
+
   <div id="message">
     <h1>SOLD!</h1>
     <p>Docs signed. Deal done. High-fives all round.</p>
@@ -71,14 +76,24 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     const canvas = document.getElementById('confetti');
+    const audio = document.getElementById('celebrationSound');
     const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
+
+    function playSound() {
+      // Try to play — some browsers require a user gesture
+      audio.volume = 0.7;
+      audio.play().catch(() => {
+        console.log("Autoplay blocked — sound will play on first user click.");
+        document.body.addEventListener('click', () => audio.play(), { once: true });
+      });
+    }
 
     function launchConfetti() {
       const duration = 5000;
       const end = Date.now() + duration;
 
       (function frame() {
-        const brandColors = ['#a29061', '#ffffff', '#cfd1d4']; // gold + white + silver
+        const brandColors = ['#a29061', '#ffffff', '#cfd1d4'];
 
         for (let i = 0; i < 3; i++) {
           myConfetti({
@@ -121,7 +136,11 @@
       })();
     }
 
-    launchConfetti();
+    // Start sound + confetti as soon as the page loads
+    window.onload = () => {
+      playSound();
+      launchConfetti();
+    };
 
     // Redirect back to Monday after 5 seconds
     setTimeout(() => {
