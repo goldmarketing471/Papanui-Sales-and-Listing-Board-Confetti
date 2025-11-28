@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>Harcourts Gold – Celebration</title>
 
-  <!-- Montserrat: clean corporate font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Load Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     html, body {
@@ -14,12 +14,11 @@
       height: 100%;
       width: 100%;
       overflow: hidden;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #001c2f 0%, #002b49 100%);
+      background: #001f49; /* Updated background */
       color: #ffffff;
+      font-family: "Source Sans Pro", sans-serif;
     }
 
-    /* Centre message card */
     #message {
       position: absolute;
       top: 50%;
@@ -36,18 +35,18 @@
     }
 
     #message h1 {
-      font-size: 3em;
+      font-size: 3.5em;
       margin: 0;
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-weight: 700; /* Bold */
       color: #ffffff;
+      letter-spacing: 1px;
     }
 
     #message p {
       margin-top: 15px;
-      font-size: 1.2em;
-      color: #d9e7ef;
-      font-weight: 600;
+      font-size: 1.3em;
+      font-weight: 400; /* Regular */
+      color: #e3ebf2;
     }
 
     canvas {
@@ -56,77 +55,4 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-
-  <div id="message">
-    <h1>SOLD!</h1>
-    <p>Docs signed. Deal done. High-fives all round.</p>
-  </div>
-
-  <canvas id="confetti"></canvas>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
-    const canvas = document.getElementById('confetti');
-    const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
-
-    function launchConfetti() {
-      const duration = 5000;
-      const end = Date.now() + duration;
-
-      (function frame() {
-        const brandColors = ['#00ADEF', '#ffffff', '#cfd8dc', '#002b49'];
-
-        for (let i = 0; i < 3; i++) {
-          myConfetti({
-            particleCount: 12,
-            angle: 60,
-            spread: 90,
-            ticks: 200,
-            origin: { x: Math.random(), y: 0 },
-            colors: brandColors
-          });
-          myConfetti({
-            particleCount: 12,
-            angle: 120,
-            spread: 90,
-            ticks: 200,
-            origin: { x: Math.random(), y: 1 },
-            colors: brandColors
-          });
-          myConfetti({
-            particleCount: 12,
-            angle: 90,
-            spread: 90,
-            ticks: 200,
-            origin: { x: 0, y: Math.random() },
-            colors: brandColors
-          });
-          myConfetti({
-            particleCount: 12,
-            angle: 270,
-            spread: 90,
-            ticks: 200,
-            origin: { x: 1, y: Math.random() },
-            colors: brandColors
-          });
-        }
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      })();
-    }
-
-    launchConfetti();
-
-    // Redirect back to Monday after 5 seconds
-    setTimeout(() => {
-      window.location.href = "https://harcourts-gold-compliance.monday.com/boards/18390236478";
-    }, 5000);
-  </script>
-</body>
-</html>
+      pointer-ev
